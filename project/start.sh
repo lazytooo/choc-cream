@@ -1,0 +1,2 @@
+/init.sh
+/app/main
