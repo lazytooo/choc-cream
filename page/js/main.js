@@ -139,7 +139,6 @@
 		var protocol = window.location.protocol;
 		var host = window.location.host;
 		var url = protocol+"//"+host+"/photo-wall/photos?page="+calPage+"&page_size=5";
-		alert(url);
 		$.getJSON(url, function(result){
 			if (result.data.length === 0) {
 				alert("到底啦");
