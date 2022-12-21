@@ -15,7 +15,7 @@ type implUsecase struct {
 	repo repository.Repository
 }
 
-func (u *implUsecase) GetPhotoList(params models.PageInfo) (list []models.PhotoInfo, err error) {
+func (u *implUsecase) GetPhotoList(params models.PageInfo) (list []models.Photo, err error) {
 	start, end := params.Limit()
 	list, err = u.repo.QueryPhotoList(start, end)
 	if err != nil {

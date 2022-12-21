@@ -26,7 +26,7 @@ func (h Handler) GetPhotoList(c echo.Context) (err error) {
 
 	if err == nil {
 		if len(list) == 0 {
-			list = []models.PhotoInfo{}
+			list = []models.Photo{}
 		}
 		result["data"] = list
 	}

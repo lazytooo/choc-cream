@@ -2,7 +2,7 @@ package models
 
 import "github.com/vmihailenco/msgpack"
 
-type PhotoInfo struct {
+type Photo struct {
 	PhotoID       int64  `json:"photo_id" db:"photo_id" msgpack:"a"`
 	PhotoTitle    string `json:"photo_title" db:"photo_title" msgpack:"b"`
 	PhotoUrl      string `json:"photo_url" db:"photo_url" msgpack:"c"`
@@ -12,11 +12,11 @@ type PhotoInfo struct {
 	UpdateTime    string `json:"update_time" db:"update_time" msgpack:"g"`
 }
 
-func (p *PhotoInfo) MarshalBinary() ([]byte, error) {
+func (p *Photo) MarshalBinary() ([]byte, error) {
 	return msgpack.Marshal(p)
 }
 
 // UnmarshalBinary use msgpack
-func (p *PhotoInfo) UnmarshalBinary(data []byte) error {
+func (p *Photo) UnmarshalBinary(data []byte) error {
 	return msgpack.Unmarshal(data, p)
 }
