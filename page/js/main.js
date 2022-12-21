@@ -114,9 +114,32 @@
 		getPhotoList(calPage, 10, columnValue)
 	}
 
+	function initFirstPhotoList() {
+		columnValue = document.getElementById("fh5co-board").getAttribute("data-columns");
+		// 找到最外层的div
+		var parentDiv = document.getElementById("fh5co-board");
+		for(var idx=1; idx<=columnValue; idx++) {
+			var columnDiv = document.createElement("div");
+			columnDiv.setAttribute("id", "column_"+idx);
+			columnDiv.setAttribute("class", "column size-1of"+columnValue);
+			parentDiv.appendChild(columnDiv);
+		}
+		getPhotoList(calPage, 10, columnValue)
+	}
+
+	function getColumnDiv() {
+		columnValue = document.getElementById("fh5co-board").getAttribute("data-columns");
+		var a =document.getElementsByClassName("column size-1of"+columnValue);
+		console.log(a);
+
+	}
+
 	function getPhotoList(){
 		calPage++
-		var url = "http://localhost:8080/photo-wall/photos?page="+calPage+"&page_size=5";
+		var protocol = window.location.protocol;
+		var host = window.location.host;
+		var url = protocol+"//"+host+"/photo-wall/photos?page="+calPage+"&page_size=5";
+		alert(url);
 		$.getJSON(url, function(result){
 			if (result.data.length === 0) {
 				alert("到底啦");
@@ -169,6 +192,7 @@
 
 	$(function(){
 		initFirstPhotoList();
+		getColumnDiv()
 		magnifPopup();
 		offCanvass();
 		mobileMenuOutsideClick();
