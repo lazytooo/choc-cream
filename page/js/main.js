@@ -99,6 +99,7 @@
 	//</div>
 
 	var calPage = 0;
+	var checkPage = 0;
 	var columnValue;
 	var C = 10; //滚动条距离底部的距离
 	function initFirstPhotoList() {
@@ -127,23 +128,20 @@
 		getPhotoList(calPage, 10, columnValue)
 	}
 
-	function getColumnDiv() {
-		columnValue = document.getElementById("fh5co-board").getAttribute("data-columns");
-		var a =document.getElementsByClassName("column size-1of"+columnValue);
-		console.log(a);
-
-	}
-
 	function getPhotoList(){
 		calPage++
+		if (calPage === checkPage+1 && calPage !== 1) {
+			return
+		}
 		var protocol = window.location.protocol;
 		var host = window.location.host;
 		var url = protocol+"//"+host+"/photo-wall/photos?page="+calPage+"&page_size=5";
 		$.getJSON(url, function(result){
 			if (result.data.length === 0) {
-				alert("到底啦");
+				checkPage = calPage;
 				return
 			}
+			
 			for(var idx=0;idx<result.data.length;idx++) {
 				var columnIdx = idx+1
 				var pColumnDiv
@@ -189,9 +187,20 @@
 		})
 	}
 
+	window.onscroll= function(){
+		//文档内容实际高度（包括超出视窗的溢出部分）
+		var scrollHeight = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight);
+		//滚动条滚动距离
+		var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+		//窗口可视范围高度
+		var clientHeight = window.innerHeight || Math.min(document.documentElement.clientHeight,document.body.clientHeight);
+		if(clientHeight + scrollTop + 0.5 >= scrollHeight){
+			initFirstPhotoList();
+		}
+	}
+
 	$(function(){
 		initFirstPhotoList();
-		getColumnDiv()
 		magnifPopup();
 		offCanvass();
 		mobileMenuOutsideClick();
