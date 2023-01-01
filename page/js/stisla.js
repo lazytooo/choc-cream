@@ -50,7 +50,7 @@ $(function() {
 
 	$("[data-toggle=read]").click(function() {
 		let $this = $(this),
-				$id = $this.attr("id");
+		$id = $this.attr("id");
 
 		$("body").css({
 			overflow: "hidden"
@@ -90,11 +90,14 @@ $(function() {
 				loading.hide();
 			},
 			success: function(data) {
+				data = data[($this).attr('data-id') - 1];
+
 				let reg = /{([a-zA-Z0-9]+)}/g,
 						res = [],
 						element = $element;
 				while(match = reg.exec($element)) {
 					element = element.replace('{' + match[1] + '}', data[match[1]]);
+
 				}
 
 				$("body").prepend(element);

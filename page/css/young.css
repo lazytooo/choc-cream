@@ -340,6 +340,7 @@ section.bg-reverse {
 }
 
 section.bg-overlay {
+	width: 100%;
 	background-color: rgba(0,0,0,0.85);
 }
 
@@ -555,7 +556,7 @@ article.card .card-more i {
 
 /*projects*/
 .projects-picture {
-	width: 250px;
+	width: 100%;
 	margin: 0 auto;
 }
 
