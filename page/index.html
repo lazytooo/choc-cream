@@ -48,6 +48,18 @@
                 left:0;}
         </style>
         <!--定义底部承载游动小鱼特效的div样式结束-->
+
+        <style>
+            footer{
+                z-index: 10000;
+                position: absolute;
+                text-align: center;
+                bottom: 0;
+                right: 0;
+                left: 0;
+                padding-bottom: 15px;
+            }
+        </style>
     </head>
     <body>
         <!--引入jquery-->
@@ -59,7 +71,7 @@
         <!--核心特效定义js-->
         <script src='./js/fish.js'></script>
     </body>
-    <a href="https://beian.miit.gov.cn/" target="_blank">浙ICP备2022037537号-1</a>
+
     <script>
         //高级用法
         window.MyNavCard = $MGC({
@@ -184,4 +196,7 @@
         //     console.log("打开回调函数...");
         // }
     </script>
+    <footer >
+        <a href="https://beian.miit.gov.cn/" target="_blank">浙ICP备2022037537号-1</a>
+    </footer>
 </html>
